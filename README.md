@@ -1,8 +1,6 @@
-# shopify_project
-# This is the project that is on my YouTube channel. Feel free to pull it and build on it !! And while you're at it, leave a 5-star rating if you like it.
+# Arena Development 
 
-
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center"><a href="https://arenahere.com" target="_blank"><img src="https://arenahere.com/assets_front/images/logo-arena.png" width="400"></a></p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
