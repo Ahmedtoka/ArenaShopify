@@ -135,11 +135,11 @@
                                                         </div>
                                                     </td>
                                                     <td class="text-center">
-                                                        NHFDr{{ $return->return_number }}
+                                                        {{ $store->site_symbol }}r{{ $return->return_number }}
                                                     </td>
                                                     <td class="text-center">
                                                         <a class="btn-link"
-                                                            href="{{ route('shopify.order.prepare', $return->order_number) }}">NHS{{ $return->order_number }}</a>
+                                                            href="{{ route('shopify.order.prepare', $return->order_number) }}">{{ $store->site_symbol }}{{ $return->order_number }}</a>
                                                     </td>
                                                     <td class="text-center">
                                                         @if ($return->status == 'In Progress')

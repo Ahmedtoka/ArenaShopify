@@ -234,14 +234,21 @@
             $barcode = new DNS1D();
 
             echo ' <p style="text-align: center;display: block";font-size:20px>' .
-                $barcode->getBarcodeSVG('{{$store->site_symbol}}r' . $return->return_number, 'C128', 3, 37, 'Black', false) .
+                $barcode->getBarcodeSVG(
+                    '{{ $store->site_symbol }}r' . $return->return_number,
+                    'C128',
+                    3,
+                    37,
+                    'Black',
+                    false,
+                ) .
                 '</p>';
         @endphp
 
         <p> Return Placing Date: {{ date('Y-m-d', strtotime($return->created_at)) }}<br>
             Shipping Date : {{ date('Y-m-d') }} <br>
-            Return Number : {{$store->site_symbol}}r{{ $return->return_number }} <br>
-            Order Number : {{$store->site_symbol}}-{{ $return->order_number }} <br>
+            Return Number : {{ $store->site_symbol }}r{{ $return->return_number }} <br>
+            Order Number : {{ $store->site_symbol }}-{{ $return->order_number }} <br>
             Customer Name : {{ $order_shipping_address['name'] }}<br>
             City: {{ $order_shipping_address['city'] }}<br>
             Zone: {{ $order_shipping_address['province'] }}<br>
@@ -315,13 +322,13 @@
                 </tr>
                 <tr>
                     <td class="centered" colspan="3">
-                        <h2><i class="fa fa-headphones" aria-hidden="true"></i> 20 105 009 2630</h2>
+                        <h2><i class="fa fa-headphones" aria-hidden="true"></i>{{ $store->phone }}</h2>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="5" class="centered">
                         <i class="fa fa-globe" aria-hidden="true"></i>
-                        <span style="font-size: 12px">phpstack-1104675-3871353.cloudwaysapps.com</span>
+                        <span style="font-size: 12px">{{ $store->website }}</span>
                     </td>
                 </tr>
             </tbody>

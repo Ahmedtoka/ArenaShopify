@@ -231,13 +231,13 @@
             use Milon\Barcode\DNS1D;
             $barcode = new DNS1D();
             echo ' <p style="text-align: center;display: block";font-size:20px>' .
-                $barcode->getBarcodeSVG('NHS' . $data['order_id'], 'C128', 3, 37, 'Black', false) .
+                $barcode->getBarcodeSVG($store->site_symbol . $data['order_id'], 'C128', 3, 37, 'Black', false) .
                 '</p>';
         @endphp
 
         <p> Order Placing Date: {{ $order->created_at_date }}<br>
             Shipping Date : {{ date('Y-m-d H:i:s') }} <br>
-            Order Number : NHS{{ $data['order_id'] }} <br>
+            Order Number : {{ $store->site_symbol }}{{ $data['order_id'] }} <br>
             Customer Name : {{ $order['shipping_address']['name'] }}<br>
             City: {{ $order['shipping_address']['province'] }}<br>
             Zone: {{ $order['shipping_address']['city'] }}<br>
@@ -334,13 +334,13 @@
                 </tr>
                 <tr>
                     <td class="centered" colspan="3">
-                        <h2><i class="fa fa-headphones" aria-hidden="true"></i> 010 5009 26 30</h2>
+                        <h2><i class="fa fa-headphones" aria-hidden="true"></i>{{ $store->phone }}</h2>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="5" class="centered">
                         <i class="fa fa-globe" aria-hidden="true"></i>
-                        <span style="font-size: 12px">{{$store->website}}</span>
+                        <span style="font-size: 12px">{{ $store->website }}</span>
                     </td>
                 </tr>
             </tbody>

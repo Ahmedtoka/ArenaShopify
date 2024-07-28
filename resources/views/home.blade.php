@@ -234,7 +234,8 @@
                                     <tbody>
                                         @foreach ($recent_sales as $key => $sale)
                                             <tr>
-                                                <th scope="row"><a href="#">NHS{{ $sale->order_number }}</a>
+                                                <th scope="row"><a
+                                                        href="#">{{ $store->site_symbol }}{{ $sale->order_number }}</a>
                                                 </th>
                                                 <td>
                                                     @if (isset($sale->shipping_address['name']))

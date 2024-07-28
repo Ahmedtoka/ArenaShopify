@@ -196,10 +196,10 @@
                                                     </div>
                                                 </td>
                                                 <td class="text-center"><a class="btn-link"
-                                                        href="{{ route('shopify.order.prepare', str_replace('#', '', $product['order_id'])) }}">NHS{{ $product['order_id'] }}</a>
+                                                        href="{{ route('shopify.order.prepare', str_replace('#', '', $product['order_id'])) }}">{{ $store->site_symbol }}{{ $product['order_id'] }}</a>
                                                 </td>
                                                 <td class="text-center">
-                                                    NHFDr{{ $product['return_number'] }}
+                                                    {{ $store->site_symbol }}r{{ $product['return_number'] }}
                                                 </td>
                                                 <td class="text-center">
                                                     <img height="200" width="180"
