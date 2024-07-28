@@ -58,6 +58,11 @@
                                 <i class="bi bi-circle"></i><span>Customers</span>
                             </a>
                         </li>
+                        <li>
+                            <a id="users" href="{{ route('shopify.users') }}">
+                                <i class="bi bi-circle"></i><span>Users</span>
+                            </a>
+                        </li>
                     @endif
 
                     <li>

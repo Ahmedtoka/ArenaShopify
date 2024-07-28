@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Excel;
 use Exception;
 use App\Models\Sale;
+use App\Models\Role;
 use App\Models\User;
 use App\Models\Pickup;
 use App\Models\Refund;
@@ -22,7 +23,7 @@ use App\Models\ResyncedOrder;
 use App\Models\ReturnedOrder;
 use App\Models\CancelledOrder;
 use App\Models\Store;
-
+use Illuminate\Support\Facades\Hash;
 use App\Imports\ProductsImport;
 use App\Models\InventoryDetail;
 use App\Models\Order as order2;
@@ -3048,5 +3049,62 @@ class ShopifyController extends Controller {
         OneOrder::dispatchNow($user, $store, $order->id);
         return redirect()->route('shopify.order.show', $id)->with('success', 'Order synced!');
     }
+
+    public function users(){
+        $users = User::all();
+        return view('users.index' , compact('users'));
+    }
+    public function create_user(){
+        $roles = Role::all();
+        $warehouses = Warehouse::all();
+        $stores = Store::all();
+        return view('users.create' , compact('roles' , 'warehouses' , 'stores'));
+    }
+    public function store_user(Request $request){
+        //validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users' . $user->id,
+            'password' => 'required|string|min:6',
+            'role_id' => 'required|integer',
+            'store_id' => 'required|integer',
+            'warehouse_id' => 'required|integer',
+        ]);
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
+        $user->store_id = $request->store_id;
+        $user->warehouse_id = $request->warehouse_id;
+        $user->save();
+        return redirect()->route('shopify.users')->with('success' , 'User Added Successfully');
+    }
+    public function edit_user(User $user){
+        return view('users.edit' , compact('user'));
+    }
+    public function update_user(User $user , Request $request){
+        //validation
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users' . $user->id,
+            'role_id' => 'required|integer',
+            'store_id' => 'required|integer',
+            'warehouse_id' => 'required|integer',
+        ]);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role_id = $request->role_id;
+        $user->store_id = $request->store_id;
+        $user->warehouse_id = $request->warehouse_id;
+        $user->save();
+        return redirect()->back()->with('success' , 'User Updated Successfully');
+    }
+    public function destroy_user(User $user){
+        $user->delete();
+        return redirect()->route('shopify.users')->with('success' , 'User Deleted Successfully');
+    }
+
     //PREPARATION
 }

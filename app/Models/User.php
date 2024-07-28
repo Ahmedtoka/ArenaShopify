@@ -126,4 +126,14 @@ class User extends Authenticatable {
             default: return null;
         }
     }
+
+    public function role(){
+        return $this->belongsTo(Role::class , 'role_id');
+    }
+    public function warehouse(){
+        return $this->belongsTo(Warehouse::class , 'warehouse_id');
+    }
+    public function store(){
+        return $this->belongsTo(Store::class , 'store_id');
+    }
 }

@@ -101,6 +101,14 @@ Route::middleware(['two_fa', 'auth'])->group(function () {
             Route::any('customerList', [ShopifyController::class, 'list'])->name('customers.list');
             Route::get('sync/customers', [ShopifyController::class, 'syncCustomers'])->name('customers.sync');
         });
+
+        Route::get('users', [ShopifyController::class, 'users'])->name('shopify.users');
+        Route::get('users/create', [ShopifyController::class, 'create_user'])->name('user.create');
+        Route::post('users/create', [ShopifyController::class, 'store_user'])->name('user.store');
+        Route::get('users/{user}/edit', [ShopifyController::class, 'edit_user'])->name('edit.user');
+        Route::post('users/{user}/edit', [ShopifyController::class, 'update_user'])->name('update.users');
+        Route::get('users/{user}/destroy', [ShopifyController::class, 'destroy_user'])->name('destroy.user');
+
         Route::get('profile', [SettingsController::class, 'profile'])->name('my.profile');
         Route::any('accept/charge', [ShopifyController::class, 'acceptCharge'])->name('accept.charge');
 
